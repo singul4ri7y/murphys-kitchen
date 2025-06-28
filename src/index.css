@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 45 29% 97%;
+    --foreground: 25 25% 15%;
+
+    --card: 45 29% 97%;
+    --card-foreground: 25 25% 15%;
+
+    --popover: 45 29% 97%;
+    --popover-foreground: 25 25% 15%;
+
+    --primary: 25 95% 53%;
+    --primary-foreground: 45 29% 97%;
+
+    --secondary: 35 35% 92%;
+    --secondary-foreground: 25 25% 15%;
+
+    --muted: 35 20% 90%;
+    --muted-foreground: 25 15% 45%;
+
+    --accent: 35 95% 60%;
+    --accent-foreground: 25 25% 15%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 45 29% 97%;
+
+    --success: 120 60% 45%;
+
+    --border: 35 35% 85%;
+    --input: 35 20% 90%;
+    --ring: 25 95% 53%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 25 25% 8%;
+    --foreground: 45 29% 95%;
+
+    --card: 25 25% 10%;
+    --card-foreground: 45 29% 95%;
+
+    --popover: 25 25% 10%;
+    --popover-foreground: 45 29% 95%;
+
+    --primary: 25 95% 53%;
+    --primary-foreground: 25 25% 8%;
+
+    --secondary: 25 15% 15%;
+    --secondary-foreground: 45 29% 95%;
+
+    --muted: 25 15% 18%;
+    --muted-foreground: 45 15% 60%;
+
+    --accent: 35 95% 60%;
+    --accent-foreground: 25 25% 8%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 45 29% 95%;
+
+    --border: 25 15% 20%;
+    --input: 25 15% 18%;
+    --ring: 25 95% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    @apply font-inter;
+  }
+}
+
+@font-face {
+  font-family: "Christmas and Santona";
+  src: url("/src/fonts/Christmas and Santona.ttf") format("truetype");
+  font-display: swap;
+}
+
+main {
+  height: 100svh;
+}
+
+.text-shadow {
+  text-shadow:
+    -1px -1px 0 hsl(var(--background)),
+    1px -1px 0 hsl(var(--background)),
+    -1px 1px 0 hsl(var(--background)),
+    1px 1px 0 hsl(var(--background));
+}
+
+.grecaptcha-badge {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+input::placeholder {
+  color: hsl(var(--muted-foreground)) !important;
+  font-family: 'Source Code Pro', monospace;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--accent));
+}
