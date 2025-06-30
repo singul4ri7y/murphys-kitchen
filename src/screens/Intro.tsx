@@ -73,17 +73,15 @@ export const Intro: React.FC = () => {
       <AnimatedWrapper>
         <div className="flex size-full flex-col items-center justify-center p-8">
           <div className="text-center space-y-6">
-            <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="flex flex-col items-center gap-4 mb-6">
               <img 
                 src="/images/7.png" 
                 alt="Murphy's Kitchen Logo" 
-                className="size-16 object-contain"
+                className="size-24 object-contain"
               />
-              <div>
-                <p className="text-lg text-muted-foreground italic">
-                  Anything can be cooked will be cooked
-                </p>
-              </div>
+              <p className="text-sm text-muted-foreground italic">
+                Anything can be cooked will be cooked
+              </p>
             </div>
 
             <div className="bg-card/50 p-6 rounded-lg border border-border">
@@ -115,17 +113,15 @@ export const Intro: React.FC = () => {
       <AnimatedWrapper>
         <div className="flex size-full flex-col items-center justify-center p-8">
           <div className="text-center space-y-6">
-            <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="flex flex-col items-center gap-4 mb-6">
               <img 
                 src="/images/7.png" 
                 alt="Murphy's Kitchen Logo" 
-                className="size-16 object-contain"
+                className="size-24 object-contain"
               />
-              <div>
-                <p className="text-lg text-muted-foreground italic">
-                  Anything can be cooked will be cooked
-                </p>
-              </div>
+              <p className="text-sm text-muted-foreground italic">
+                Anything can be cooked will be cooked
+              </p>
             </div>
 
             <div className="bg-destructive/10 p-6 rounded-lg border border-destructive/20">
@@ -165,17 +161,15 @@ export const Intro: React.FC = () => {
         <div className="absolute inset-0 bg-primary-overlay backdrop-blur-sm rounded-2.5xl" />
         
         <div className="relative z-10 text-center space-y-8">
-          <div className="flex items-center justify-center gap-4 mb-6">
+          <div className="flex flex-col items-center gap-4 mb-6">
             <img 
               src="/images/7.png" 
               alt="Murphy's Kitchen Logo" 
-              className="size-20 object-contain"
+              className="size-32 object-contain"
             />
-            <div>
-              <p className="text-xl text-primary italic">
-                Anything can be cooked will be cooked
-              </p>
-            </div>
+            <p className="text-lg text-primary italic">
+              Anything can be cooked will be cooked
+            </p>
           </div>
 
           {isCreatingConversation ? (

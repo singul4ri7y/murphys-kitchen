@@ -39,17 +39,15 @@ export const Login: React.FC = () => {
           <div className="w-full max-w-md space-y-8">
             {/* Header */}
             <div className="text-center">
-              <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="flex flex-col items-center gap-3 mb-6">
                 <img 
                   src="/images/7.png" 
                   alt="Murphy's Kitchen Logo" 
-                  className="size-12 object-contain"
+                  className="size-20 object-contain"
                 />
-                <div>
-                  <p className="text-sm text-muted-foreground italic">
-                    Anything can be cooked will be cooked
-                  </p>
-                </div>
+                <p className="text-sm text-muted-foreground italic">
+                  Anything can be cooked will be cooked
+                </p>
               </div>
               <h2 className="text-2xl font-semibold text-foreground">Welcome Back</h2>
               <p className="text-muted-foreground">Sign in to start cooking with AI</p>
