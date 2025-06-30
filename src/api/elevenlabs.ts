@@ -7,7 +7,7 @@ export const transcribeAudio = async (audioBlob: Blob): Promise<string> => {
 
     const formData = new FormData();
     formData.append('audio', audioBlob, 'audio.wav');
-    formData.append('model_id', 'eleven_multilingual_v2');
+    formData.append('model_id', 'eleven_english_sts_v2.5');
 
     const response = await fetch('https://api.elevenlabs.io/v1/speech-to-text', {
       method: 'POST',
@@ -18,7 +18,18 @@ export const transcribeAudio = async (audioBlob: Blob): Promise<string> => {
     });
 
     if (!response.ok) {
-      throw new Error(`ElevenLabs API error: ${response.status}`);
+      let errorDetails = '';
+      try {
+        const errorData = await response.json();
+        errorDetails = JSON.stringify(errorData, null, 2);
+        console.error('ElevenLabs API error details:', errorData);
+      } catch (parseError) {
+        const errorText = await response.text();
+        errorDetails = errorText;
+        console.error('ElevenLabs API error text:', errorText);
+      }
+      
+      throw new Error(`ElevenLabs API error: ${response.status} - ${errorDetails}`);
     }
 
     const data = await response.json();
