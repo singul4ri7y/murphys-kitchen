@@ -1,10 +1,9 @@
 import { Sun, Moon } from "lucide-react";
 import { useAtom } from "jotai";
-import { themeAtom, toggleThemeAtom } from "@/store/theme";
+import { toggleThemeAtom } from "@/store/theme";
 import { Button } from "./ui/button";
 
 export const ThemeToggle = () => {
-  const [theme] = useAtom(themeAtom);
   const [, toggleTheme] = useAtom(toggleThemeAtom);
 
   return (

@@ -10,7 +10,7 @@ export const VoiceVisualizer: React.FC = () => {
     setIsAISpeaking(vol > 0.01); // Threshold for detecting speech
   }, []);
 
-  const handleAudioData = useCallback((audioData: Float32Array) => {
+  const handleAudioData = useCallback((_audioData: Float32Array) => {
     // You can use this for more complex audio analysis
     // e.g., speech recognition, sentiment analysis, etc.
   }, []);

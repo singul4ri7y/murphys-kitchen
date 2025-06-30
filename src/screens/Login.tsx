@@ -4,7 +4,6 @@ import { loginAtom } from "@/store/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mail, Lock, Loader2 } from "lucide-react";
-import { AnimatedWrapper } from "@/components/DialogWrapper";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const Login: React.FC = () => {
