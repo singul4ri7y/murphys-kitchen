@@ -69,7 +69,12 @@ export const Intro: React.FC = () => {
   // Auto-start conversation when component is ready
   useEffect(() => {
     if (token && !isCreatingConversation && !error) {
-      createConversationAndStart();
+      // Add a small delay to ensure smooth transition
+      const timer = setTimeout(() => {
+        createConversationAndStart();
+      }, 500);
+      
+      return () => clearTimeout(timer);
     }
   }, [token]);
 
@@ -83,9 +88,9 @@ export const Intro: React.FC = () => {
               <img 
                 src="/images/7.png" 
                 alt="Murphy's Kitchen Logo" 
-                className="size-24 object-contain"
+                className="size-32 object-contain"
               />
-              <p className="text-sm text-muted-foreground italic">
+              <p className="text-xs text-muted-foreground italic">
                 Anything can be cooked will be cooked
               </p>
             </div>
@@ -123,9 +128,9 @@ export const Intro: React.FC = () => {
               <img 
                 src="/images/7.png" 
                 alt="Murphy's Kitchen Logo" 
-                className="size-24 object-contain"
+                className="size-32 object-contain"
               />
-              <p className="text-sm text-muted-foreground italic">
+              <p className="text-xs text-muted-foreground italic">
                 Anything can be cooked will be cooked
               </p>
             </div>
@@ -171,9 +176,9 @@ export const Intro: React.FC = () => {
             <img 
               src="/images/7.png" 
               alt="Murphy's Kitchen Logo" 
-              className="size-32 object-contain"
+              className="size-40 object-contain"
             />
-            <p className="text-lg text-primary italic">
+            <p className="text-sm text-primary/80 italic font-medium">
               Anything can be cooked will be cooked
             </p>
           </div>
@@ -184,7 +189,7 @@ export const Intro: React.FC = () => {
               speed="1.75"
               color="white"
             ></l-quantum>
-            <p className="text-lg text-white">
+            <p className="text-lg text-white font-medium">
               Starting your AI cooking session...
             </p>
           </div>

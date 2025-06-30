@@ -19,7 +19,7 @@ interface ScreenState {
 }
 
 const initialScreenState: ScreenState = {
-  currentScreen: "introLoading",
+  currentScreen: "intro", // Start directly with intro (which auto-starts conversation)
 };
 
 export const screenAtom = atom<ScreenState>(initialScreenState);

@@ -44,10 +44,10 @@ export const Login: React.FC = () => {
                   <img 
                     src="/images/7.png" 
                     alt="Murphy's Kitchen Logo" 
-                    className="size-16 object-contain"
+                    className="size-20 object-contain"
                   />
                 </div>
-                <p className="text-sm text-muted-foreground italic font-medium">
+                <p className="text-xs text-muted-foreground italic font-medium">
                   Anything can be cooked will be cooked
                 </p>
               </div>

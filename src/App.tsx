@@ -7,7 +7,6 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Login } from "./screens/Login";
 import {
-  IntroLoading,
   Outage,
   OutOfMinutes,
   Intro,
@@ -32,8 +31,6 @@ function App() {
 
   const renderScreen = () => {
     switch (currentScreen) {
-      case "introLoading":
-        return <IntroLoading />;
       case "outage":
         return <Outage />;
       case "outOfMinutes":
@@ -45,17 +42,17 @@ function App() {
       case "finalScreen":
         return <FinalScreen />;
       default:
-        return <IntroLoading />;
+        return <Intro />; // Default to intro instead of loading
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/3 via-background to-accent/3">
-      {currentScreen !== "introLoading" && <Header />}
+      <Header />
       <main className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] gap-6 p-6">
         {renderScreen()}
       </main>
-      {currentScreen !== "introLoading" && <Footer />}
+      <Footer />
     </div>
   );
 }

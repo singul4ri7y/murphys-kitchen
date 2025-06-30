@@ -17,10 +17,10 @@ export const Header = memo(() => {
             <img 
               src="/images/7.png" 
               alt="Murphy's Kitchen Logo" 
-              className="size-8 object-contain"
+              className="size-12 object-contain"
             />
           </div>
-          <p className="text-xs text-muted-foreground italic font-medium">
+          <p className="text-[10px] text-muted-foreground italic font-medium">
             Anything can be cooked will be cooked
           </p>
         </div>
