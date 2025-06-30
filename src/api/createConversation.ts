@@ -46,7 +46,16 @@ export const createConversation = async (
   });
 
   if (!response?.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    let errorMessage = `HTTP error! status: ${response.status}`;
+    try {
+      const errorBody = await response.text();
+      if (errorBody) {
+        errorMessage += ` - ${errorBody}`;
+      }
+    } catch (e) {
+      // If we can't read the response body, just use the status
+    }
+    throw new Error(errorMessage);
   }
 
   const data = await response.json();
