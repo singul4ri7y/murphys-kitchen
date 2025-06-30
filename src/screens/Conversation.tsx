@@ -26,6 +26,7 @@ import { naughtyScoreAtom } from "@/store/game";
 import { apiTokenAtom } from "@/store/tokens";
 import { quantum } from 'ldrs';
 import { cn } from "@/lib/utils";
+import { ChatInterface } from "@/components/ChatInterface";
 
 quantum.register();
 
@@ -44,6 +45,7 @@ export const Conversation: React.FC = () => {
   const isMicEnabled = !localAudio.isOff;
   const remoteParticipantIds = useParticipantIds({ filter: "remote" });
   const [start, setStart] = useState(false);
+  const [isChatMinimized, setIsChatMinimized] = useState(false);
 
   useEffect(() => {
     if (remoteParticipantIds.length && !start) {
@@ -91,6 +93,10 @@ export const Conversation: React.FC = () => {
     }
   }, [daily, token]);
 
+  const handleToggleChatMinimize = () => {
+    setIsChatMinimized(!isChatMinimized);
+  };
+
   return (
     <DialogWrapper>
       <div className="absolute inset-0 size-full">
@@ -116,11 +122,11 @@ export const Conversation: React.FC = () => {
             id={localSessionId}
             tileClassName="!object-cover"
             className={cn(
-              "absolute bottom-20 right-4 aspect-video h-40 w-24 overflow-hidden rounded-lg border-2 border-primary sm:bottom-12 lg:h-auto lg:w-52"
+              "absolute bottom-20 left-4 aspect-video h-40 w-24 overflow-hidden rounded-lg border-2 border-primary sm:bottom-12 lg:h-auto lg:w-52"
             )}
           />
         )}
-        <div className="absolute bottom-8 right-1/2 z-10 flex translate-x-1/2 justify-center gap-4">
+        <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 justify-center gap-4">
           <Button
             size="icon"
             variant="secondary"
@@ -154,6 +160,13 @@ export const Conversation: React.FC = () => {
             <PhoneIcon className="size-5 rotate-[135deg]" />
           </Button>
         </div>
+        
+        {/* Chat Interface */}
+        <ChatInterface
+          isMinimized={isChatMinimized}
+          onToggleMinimize={handleToggleChatMinimize}
+        />
+        
         <DailyAudio />
       </div>
     </DialogWrapper>
