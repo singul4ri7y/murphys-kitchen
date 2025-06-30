@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAtom } from 'jotai';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Send, MessageSquare, X } from 'lucide-react';
+import { Send, MessageSquare, X, AlertCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { chatMessagesAtom, addChatMessageAtom, isChatLoadingAtom } from '@/store/chat';
 import { sendChatMessage } from '@/api/chatGPT';
@@ -14,6 +14,39 @@ interface ChatInterfaceProps {
   isMinimized: boolean;
   onToggleMinimize: () => void;
 }
+
+// Basic recipe responses for fallback
+const basicRecipeResponses: { [key: string]: string } = {
+  'pasta': "Here's a simple pasta recipe: Boil water, add salt, cook pasta for 8-12 minutes, drain, and toss with your favorite sauce!",
+  'chicken': "For basic chicken: Season with salt and pepper, cook in a pan with oil over medium heat for 6-7 minutes per side until internal temp reaches 165°F.",
+  'rice': "Perfect rice: 1 cup rice to 2 cups water. Bring to boil, reduce heat, cover and simmer for 18 minutes. Let stand 5 minutes before fluffing.",
+  'eggs': "Scrambled eggs: Whisk 2-3 eggs with a splash of milk, cook in butter over low heat, stirring constantly until creamy.",
+  'soup': "Basic vegetable soup: Sauté onions, carrots, celery. Add broth, simmer 20 minutes. Season with salt, pepper, and herbs.",
+  'bread': "Simple bread: Mix flour, water, yeast, salt. Knead 10 minutes, rise 1 hour, shape, rise again, bake at 450°F for 30 minutes.",
+  'salad': "Fresh salad: Mix your favorite greens, add vegetables, nuts, and dress with olive oil, vinegar, salt, and pepper.",
+  'steak': "Perfect steak: Let come to room temp, season with salt and pepper, sear in hot pan 3-4 minutes per side, rest 5 minutes."
+};
+
+const getBasicResponse = (message: string): string => {
+  const lowerMessage = message.toLowerCase();
+  
+  for (const [keyword, response] of Object.entries(basicRecipeResponses)) {
+    if (lowerMessage.includes(keyword)) {
+      return response;
+    }
+  }
+  
+  // General cooking tips
+  if (lowerMessage.includes('cook') || lowerMessage.includes('recipe') || lowerMessage.includes('how')) {
+    return "I'd love to help with more detailed recipes! Due to LLM access limitations, I can only provide basic cooking tips. Try asking about pasta, chicken, rice, eggs, soup, bread, salad, or steak for some quick recipes!";
+  }
+  
+  if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+    return "Hello! I'm Murphy, your kitchen assistant. I can help with basic recipes and cooking tips. What would you like to cook today?";
+  }
+  
+  return "I'd love to give you a detailed response! Unfortunately, due to limited LLM access, I can only provide basic cooking guidance. Try asking about specific ingredients like pasta, chicken, rice, or eggs for quick recipes!";
+};
 
 export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   isMinimized,
@@ -34,6 +67,16 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
     scrollToBottom();
   }, [messages]);
 
+  useEffect(() => {
+    // Add welcome message when chat is first opened
+    if (messages.length === 0 && !isMinimized) {
+      addMessage({
+        role: 'assistant',
+        content: "Hello! I'm Murphy, your AI kitchen assistant. I can help with basic recipes and cooking tips. Due to limited LLM access, my responses are simplified, but I'd love to help you cook something delicious! What would you like to make today?",
+      });
+    }
+  }, [isMinimized, messages.length]);
+
   const handleSendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
 
@@ -49,8 +92,14 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
     setIsLoading(true);
 
     try {
-      // Send to PICA GPT-4o
-      const response = await sendChatMessage(messages, userMessage);
+      // Try PICA GPT-4o first, but fallback to basic responses
+      let response: string;
+      try {
+        response = await sendChatMessage(messages, userMessage);
+      } catch (error) {
+        console.log('LLM unavailable, using basic responses');
+        response = getBasicResponse(userMessage);
+      }
 
       // Add assistant response
       addMessage({
@@ -61,7 +110,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
       console.error('Error sending message:', error);
       addMessage({
         role: 'assistant',
-        content: 'Sorry, I encountered an error. Please try again.',
+        content: getBasicResponse(userMessage),
       });
     } finally {
       setIsLoading(false);
@@ -97,7 +146,13 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
           <div className="p-2 bg-primary/20 rounded-xl">
             <MessageSquare className="size-5 text-primary" />
           </div>
-          <h3 className="font-semibold text-lg">Chat with Murphy</h3>
+          <div>
+            <h3 className="font-semibold text-lg">Chat with Murphy</h3>
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <AlertCircle className="size-3" />
+              <span>Basic mode - Limited LLM access</span>
+            </div>
+          </div>
         </div>
         <Button
           onClick={onToggleMinimize}
@@ -121,6 +176,12 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
               <p className="text-sm text-muted-foreground">
                 Ask Murphy about recipes, techniques, or cooking tips.
               </p>
+              <div className="p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl border border-yellow-200 dark:border-yellow-800">
+                <div className="flex items-center gap-2 text-xs text-yellow-700 dark:text-yellow-300">
+                  <AlertCircle className="size-3" />
+                  <span>Note: Responses are basic due to limited LLM access</span>
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -150,7 +211,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
           <div className="flex justify-start">
             <div className="bg-secondary/80 border border-border/30 rounded-2xl px-4 py-3 flex items-center gap-3">
               <l-quantum size="16" speed="1.75" color="hsl(var(--primary))"></l-quantum>
-              <span className="text-sm text-muted-foreground">Murphy is typing...</span>
+              <span className="text-sm text-muted-foreground">Murphy is thinking...</span>
             </div>
           </div>
         )}
@@ -166,7 +227,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Ask Murphy about cooking..."
+            placeholder="Ask Murphy about cooking... (e.g., 'how to cook pasta')"
             className="flex-1 bg-background/80 border-border/50 h-12"
             disabled={isLoading}
           />
@@ -178,6 +239,9 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
           >
             <Send className="size-4" />
           </Button>
+        </div>
+        <div className="mt-2 text-xs text-muted-foreground text-center">
+          Try asking about: pasta, chicken, rice, eggs, soup, bread, salad, or steak
         </div>
       </div>
     </div>
