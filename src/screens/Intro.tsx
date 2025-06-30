@@ -174,52 +174,14 @@ export const Intro: React.FC = () => {
     );
   }
 
-  // Show loading state without text - auto-starting conversation
+  // Show only loading animation - clean and minimal
   return (
-    <AnimatedWrapper>
-      <div className="flex size-full flex-col items-center justify-center p-8 relative overflow-hidden">
-        {/* Modern Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-background to-accent/15"></div>
-        <div className="absolute inset-0 bg-gradient-to-tl from-secondary/10 via-transparent to-primary/10"></div>
-        
-        {/* Animated Cooking Elements */}
-        <div className="absolute top-20 left-20 w-40 h-40 bg-primary/8 rounded-full blur-2xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-32 h-32 bg-accent/8 rounded-full blur-2xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-10 w-20 h-20 bg-secondary/12 rounded-full blur-xl animate-pulse delay-500"></div>
-        <div className="absolute bottom-1/3 left-1/3 w-16 h-16 bg-primary/6 rounded-full blur-lg animate-pulse delay-300"></div>
-        <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-accent/6 rounded-full blur-xl animate-pulse delay-700"></div>
-        
-        <div className="relative z-10 text-center space-y-8">
-          <div className="flex flex-col items-center gap-6 mb-8">
-            <div className="relative">
-              <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-xl animate-pulse"></div>
-              <div className="relative p-8 glass-effect rounded-3xl shadow-2xl border border-primary/30">
-                <img 
-                  src="/images/7.png" 
-                  alt="Murphy's Kitchen Logo" 
-                  className="size-40 object-contain"
-                />
-              </div>
-            </div>
-            <p className="text-base text-primary/80 italic font-medium">
-              Anything can be cooked will be cooked
-            </p>
-          </div>
-
-          <div className="space-y-6">
-            <div className="relative">
-              <div className="absolute inset-0 bg-primary/10 rounded-2xl blur-lg"></div>
-              <div className="relative p-4 glass-effect rounded-2xl">
-                <l-quantum
-                  size="60"
-                  speed="1.75"
-                  color="hsl(var(--primary))"
-                ></l-quantum>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </AnimatedWrapper>
+    <div className="fixed inset-0 flex items-center justify-center">
+      <l-quantum
+        size="60"
+        speed="1.75"
+        color="hsl(var(--primary))"
+      ></l-quantum>
+    </div>
   );
 };
