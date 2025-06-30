@@ -27,6 +27,7 @@ import { apiTokenAtom } from "@/store/tokens";
 import { quantum } from 'ldrs';
 import { cn } from "@/lib/utils";
 import { ChatInterface } from "@/components/ChatInterface";
+import { VoiceVisualizer } from "@/components/VoiceVisualizer";
 
 quantum.register();
 
@@ -110,6 +111,8 @@ export const Conversation: React.FC = () => {
                   className="size-full"
                   tileClassName="!object-cover"
                 />
+                {/* Voice Visualizer */}
+                <VoiceVisualizer />
               </>
             ) : (
               <div className="flex h-full items-center justify-center">
