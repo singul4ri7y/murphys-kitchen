@@ -22,9 +22,10 @@ const getInitialSettings = (): Settings => {
     greeting: "",
     context: "",
     persona: "pcd2c84e5c66",
+    replica: "",
   };
 };
 
 export const settingsAtom = atom<Settings>(getInitialSettings());
 
-export const settingsSavedAtom = atom<boolean>(false); 
+export const settingsSavedAtom = atom<boolean>(false);
