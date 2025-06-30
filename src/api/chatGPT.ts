@@ -1,10 +1,3 @@
-import OpenAI from 'openai';
-
-const openai = new OpenAI({
-  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  dangerouslyAllowBrowser: true
-});
-
 export interface ChatMessage {
   id: string;
   role: 'user' | 'assistant';
@@ -32,16 +25,28 @@ export const sendChatMessage = async (
       }
     ];
 
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4o',
-      messages: formattedMessages,
-      max_tokens: 500,
-      temperature: 0.7,
+    const response = await fetch('https://api.pica-ai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${import.meta.env.VITE_PICA_SECRET_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'gpt-4o',
+        messages: formattedMessages,
+        max_tokens: 500,
+        temperature: 0.7,
+      }),
     });
 
-    return completion.choices[0]?.message?.content || 'Sorry, I could not process your message.';
+    if (!response.ok) {
+      throw new Error(`PICA API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.choices[0]?.message?.content || 'Sorry, I could not process your message.';
   } catch (error) {
     console.error('Error sending chat message:', error);
-    throw new Error('Failed to send message to ChatGPT');
+    throw new Error('Failed to send message to PICA GPT-4o');
   }
 };

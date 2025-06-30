@@ -49,7 +49,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
     setIsLoading(true);
 
     try {
-      // Send to ChatGPT
+      // Send to PICA GPT-4o
       const response = await sendChatMessage(messages, userMessage);
 
       // Add assistant response
@@ -77,7 +77,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
 
   if (isMinimized) {
     return (
-      <div className="absolute bottom-4 right-4 z-50">
+      <div className="w-full h-full flex items-end justify-end p-4">
         <Button
           onClick={onToggleMinimize}
           size="icon"
@@ -90,7 +90,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   }
 
   return (
-    <div className="absolute right-4 top-4 bottom-20 w-80 bg-card/95 backdrop-blur-sm border border-border rounded-lg shadow-lg flex flex-col z-40">
+    <div className="w-full h-full bg-card/95 backdrop-blur-sm border border-border rounded-lg shadow-lg flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-border">
         <div className="flex items-center gap-2">
