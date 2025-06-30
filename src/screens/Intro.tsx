@@ -157,7 +157,7 @@ export const Intro: React.FC = () => {
     );
   }
 
-  // Show loading state - auto-starting conversation
+  // Show loading state without text - auto-starting conversation
   return (
     <AnimatedWrapper>
       <div className="flex size-full flex-col items-center justify-center p-8">
@@ -189,9 +189,6 @@ export const Intro: React.FC = () => {
               speed="1.75"
               color="white"
             ></l-quantum>
-            <p className="text-lg text-white font-medium">
-              Starting your AI cooking session...
-            </p>
           </div>
         </div>
       </div>
