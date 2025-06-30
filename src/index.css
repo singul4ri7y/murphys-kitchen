@@ -156,7 +156,31 @@ input::placeholder {
          transition-all duration-200 ease-in-out focus-ring;
 }
 
-/* Header Logo Styling */
+/* Header Logo Styling - Larger version without padding */
+.header-logo-large {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  transition: all 0.3s ease-in-out;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+  margin: 0;
+  padding: 0;
+}
+
+.header-logo-large:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.15));
+}
+
+.dark .header-logo-large {
+  filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.1));
+}
+
+.dark .header-logo-large:hover {
+  filter: drop-shadow(0 6px 16px rgba(255, 255, 255, 0.15));
+}
+
+/* Original header logo styling (keeping for backwards compatibility) */
 .header-logo {
   width: 80px;
   height: 80px;
