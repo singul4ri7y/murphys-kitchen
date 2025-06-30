@@ -50,9 +50,9 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5">
+    <div className="min-h-screen bg-gradient-to-br from-primary/3 via-background to-accent/3">
       {currentScreen !== "introLoading" && <Header />}
-      <main className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] gap-3 p-5 sm:gap-4 lg:p-8">
+      <main className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] gap-6 p-6">
         {renderScreen()}
       </main>
       {currentScreen !== "introLoading" && <Footer />}

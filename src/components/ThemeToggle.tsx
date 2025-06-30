@@ -12,7 +12,7 @@ export const ThemeToggle = () => {
       variant="outline"
       size="icon"
       onClick={toggleTheme}
-      className="relative size-10 border-border/50 bg-card hover:bg-muted"
+      className="relative border-border/30 bg-background/50 hover:bg-primary/10 hover:border-primary/50"
     >
       <Sun className="size-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
       <Moon className="absolute size-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
