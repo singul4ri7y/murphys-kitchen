@@ -34,7 +34,21 @@ export const Login: React.FC = () => {
       <div className="absolute bottom-20 right-20 w-24 h-24 bg-accent/5 rounded-full blur-xl animate-pulse delay-1000 hidden sm:block"></div>
       <div className="absolute top-1/2 right-10 w-16 h-16 bg-secondary/10 rounded-full blur-lg animate-pulse delay-500 hidden sm:block"></div>
       
-      <div className="absolute top-4 sm:top-6 right-4 sm:right-6 z-10">
+      {/* Top right controls */}
+      <div className="absolute top-4 sm:top-6 right-4 sm:right-6 z-10 flex items-center gap-2 sm:gap-3">
+        {/* Bolt logo */}
+        <a 
+          href="https://bolt.new" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="transition-transform hover:scale-105 hidden sm:block"
+        >
+          <img 
+            src="/images/bolt.png" 
+            alt="Built with Bolt" 
+            className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 object-contain"
+          />
+        </a>
         <ThemeToggle />
       </div>
       
@@ -109,10 +123,28 @@ export const Login: React.FC = () => {
               </Button>
             </form>
 
-            <div className="text-center">
-              <p className="text-xs sm:text-sm text-muted-foreground">
-                Demo credentials: Any email and password
-              </p>
+            <div className="space-y-3">
+              <div className="text-center">
+                <p className="text-xs sm:text-sm text-muted-foreground">
+                  Demo credentials: Any email and password
+                </p>
+              </div>
+              
+              {/* Mobile Bolt logo */}
+              <div className="flex justify-center sm:hidden">
+                <a 
+                  href="https://bolt.new" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="transition-transform hover:scale-105"
+                >
+                  <img 
+                    src="/images/bolt.png" 
+                    alt="Built with Bolt" 
+                    className="w-8 h-8 object-contain opacity-70 hover:opacity-100"
+                  />
+                </a>
+              </div>
             </div>
           </div>
         </div>
