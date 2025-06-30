@@ -3,7 +3,7 @@ import { useAtom } from "jotai";
 import { loginAtom } from "@/store/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ChefHat, Mail, Lock, Loader2 } from "lucide-react";
+import { Mail, Lock, Loader2 } from "lucide-react";
 import { AnimatedWrapper } from "@/components/DialogWrapper";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -40,7 +40,11 @@ export const Login: React.FC = () => {
             {/* Header */}
             <div className="text-center">
               <div className="flex items-center justify-center gap-3 mb-4">
-                <ChefHat className="size-12 text-primary" />
+                <img 
+                  src="/images/7.png" 
+                  alt="Murphy's Kitchen Logo" 
+                  className="size-12 object-contain"
+                />
                 <div>
                   <h1 className="text-3xl font-bold bg-text-primary bg-clip-text text-transparent">
                     Murphy's Kitchen
