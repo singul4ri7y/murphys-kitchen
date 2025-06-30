@@ -49,7 +49,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/3 via-background to-accent/3">
       <Header />
-      <main className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] gap-6 p-6">
+      <main className="flex flex-col items-center justify-center min-h-[calc(100vh-140px)] sm:min-h-[calc(100vh-160px)] gap-4 sm:gap-6 p-3 sm:p-6">
         {renderScreen()}
       </main>
       <Footer />

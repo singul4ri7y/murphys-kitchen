@@ -130,9 +130,9 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
         <Button
           onClick={onToggleMinimize}
           size="icon"
-          className="size-14 rounded-2xl shadow-lg hover:shadow-xl"
+          className="size-12 sm:size-14 rounded-2xl shadow-lg hover:shadow-xl"
         >
-          <MessageSquare className="size-6" />
+          <MessageSquare className="size-5 sm:size-6" />
         </Button>
       </div>
     );
@@ -141,16 +141,16 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   return (
     <div className="w-full h-full glass-effect rounded-2xl shadow-2xl flex flex-col overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between p-6 border-b border-border/30 bg-primary/5">
+      <div className="flex items-center justify-between p-4 sm:p-6 border-b border-border/30 bg-primary/5">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-primary/20 rounded-xl">
-            <MessageSquare className="size-5 text-primary" />
+            <MessageSquare className="size-4 sm:size-5 text-primary" />
           </div>
-          <div>
-            <h3 className="font-semibold text-lg">Chat with Murphy</h3>
+          <div className="min-w-0 flex-1">
+            <h3 className="font-semibold text-base sm:text-lg truncate">Chat with Murphy</h3>
             <div className="flex items-center gap-2 text-xs text-muted-foreground">
-              <AlertCircle className="size-3" />
-              <span>Basic mode - Limited LLM access</span>
+              <AlertCircle className="size-3 flex-shrink-0" />
+              <span className="truncate">Basic mode - Limited LLM access</span>
             </div>
           </div>
         </div>
@@ -158,27 +158,27 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
           onClick={onToggleMinimize}
           size="icon"
           variant="ghost"
-          className="size-10 rounded-xl hover:bg-destructive/10 hover:text-destructive"
+          className="size-8 sm:size-10 rounded-xl hover:bg-destructive/10 hover:text-destructive flex-shrink-0"
         >
           <X className="size-4" />
         </Button>
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-4">
+      <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
         {messages.length === 0 && (
-          <div className="text-center py-12 space-y-4">
-            <div className="p-6 bg-primary/10 rounded-2xl w-fit mx-auto">
-              <MessageSquare className="size-12 text-primary" />
+          <div className="text-center py-8 sm:py-12 space-y-4">
+            <div className="p-4 sm:p-6 bg-primary/10 rounded-2xl w-fit mx-auto">
+              <MessageSquare className="size-8 sm:size-12 text-primary" />
             </div>
             <div className="space-y-2">
-              <p className="text-lg font-medium">Start a conversation!</p>
+              <p className="text-base sm:text-lg font-medium">Start a conversation!</p>
               <p className="text-sm text-muted-foreground">
                 Ask Murphy about recipes, techniques, or cooking tips.
               </p>
               <div className="p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl border border-yellow-200 dark:border-yellow-800">
                 <div className="flex items-center gap-2 text-xs text-yellow-700 dark:text-yellow-300">
-                  <AlertCircle className="size-3" />
+                  <AlertCircle className="size-3 flex-shrink-0" />
                   <span>Note: Responses are basic due to limited LLM access</span>
                 </div>
               </div>
@@ -196,7 +196,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
           >
             <div
               className={cn(
-                'max-w-[80%] rounded-2xl px-4 py-3 text-sm break-words shadow-sm',
+                'max-w-[85%] sm:max-w-[80%] rounded-2xl px-3 sm:px-4 py-2 sm:py-3 text-sm break-words shadow-sm',
                 message.role === 'user'
                   ? 'bg-primary text-primary-foreground'
                   : 'bg-secondary/80 text-secondary-foreground border border-border/30'
@@ -209,7 +209,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
 
         {isLoading && (
           <div className="flex justify-start">
-            <div className="bg-secondary/80 border border-border/30 rounded-2xl px-4 py-3 flex items-center gap-3">
+            <div className="bg-secondary/80 border border-border/30 rounded-2xl px-3 sm:px-4 py-2 sm:py-3 flex items-center gap-3">
               <l-quantum size="16" speed="1.75" color="hsl(var(--primary))"></l-quantum>
               <span className="text-sm text-muted-foreground">Murphy is thinking...</span>
             </div>
@@ -220,28 +220,28 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
       </div>
 
       {/* Input */}
-      <div className="p-6 border-t border-border/30 bg-secondary/20">
-        <div className="flex gap-3">
+      <div className="p-4 sm:p-6 border-t border-border/30 bg-secondary/20">
+        <div className="flex gap-2 sm:gap-3">
           <Input
             ref={inputRef}
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Ask Murphy about cooking... (e.g., 'how to cook pasta')"
-            className="flex-1 bg-background/80 border-border/50 h-12"
+            placeholder="Ask Murphy about cooking..."
+            className="flex-1 bg-background/80 border-border/50 h-10 sm:h-12 text-sm"
             disabled={isLoading}
           />
           <Button
             onClick={handleSendMessage}
             size="icon"
             disabled={!inputValue.trim() || isLoading}
-            className="shrink-0 size-12 rounded-xl"
+            className="shrink-0 size-10 sm:size-12 rounded-xl"
           >
-            <Send className="size-4" />
+            <Send className="size-3 sm:size-4" />
           </Button>
         </div>
         <div className="mt-2 text-xs text-muted-foreground text-center">
-          Try asking about: pasta, chicken, rice, eggs, soup, bread, salad, or steak
+          Try: pasta, chicken, rice, eggs, soup, bread, salad, or steak
         </div>
       </div>
     </div>
