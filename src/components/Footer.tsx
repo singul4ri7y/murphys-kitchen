@@ -6,7 +6,7 @@ export const Footer = () => {
       <div className="flex items-center gap-2 text-sm text-muted-foreground">
         <span>Made with</span>
         <Heart className="size-4 text-primary fill-primary" />
-        <span>for culinary innovation</span>
+        <span>by Murphy's Kitchen</span>
       </div>
     </footer>
   );
