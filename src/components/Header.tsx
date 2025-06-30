@@ -12,12 +12,18 @@ export const Header = memo(() => {
   return (
     <header className="glass-effect border-b border-border/30 p-4">
       <div className="flex w-full items-center justify-between">
-        <div className="flex items-center">
+        <div className="flex items-center gap-4">
           <img 
             src="/images/7.png" 
             alt="Murphy's Kitchen Logo" 
             className="header-logo-large"
           />
+          <div className="flex flex-col">
+            <h1 className="text-2xl font-bold text-foreground">Murphy's Kitchen</h1>
+            <p className="text-sm text-muted-foreground italic">
+              Anything can be cooked will be cooked
+            </p>
+          </div>
         </div>
         
         <div className="flex items-center gap-3">

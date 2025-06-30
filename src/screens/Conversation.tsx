@@ -99,84 +99,86 @@ export const Conversation: React.FC = () => {
   };
 
   return (
-    <div className="flex w-full h-full gap-4">
-      {/* Video Container */}
-      <div className="flex-1">
-        <DialogWrapper>
-          <div className="absolute inset-0 size-full">
-            {remoteParticipantIds?.length > 0 ? (
-              <>
+    <div className="flex w-full h-full items-center justify-center">
+      <div className="flex gap-6 h-[600px] max-w-7xl w-full">
+        {/* Video Container */}
+        <div className="flex-1 h-full">
+          <DialogWrapper>
+            <div className="absolute inset-0 size-full">
+              {remoteParticipantIds?.length > 0 ? (
+                <>
+                  <Video
+                    id={remoteParticipantIds[0]}
+                    className="size-full"
+                    tileClassName="!object-cover"
+                  />
+                  {/* Voice Visualizer */}
+                  <VoiceVisualizer />
+                </>
+              ) : (
+                <div className="flex h-full items-center justify-center">
+                  <l-quantum
+                    size="45"
+                    speed="1.75"
+                    color="white"
+                  ></l-quantum>
+                </div>
+              )}
+              {localSessionId && (
                 <Video
-                  id={remoteParticipantIds[0]}
-                  className="size-full"
+                  id={localSessionId}
                   tileClassName="!object-cover"
+                  className={cn(
+                    "absolute bottom-20 left-4 aspect-video h-40 w-24 overflow-hidden rounded-lg border-2 border-primary sm:bottom-12 lg:h-auto lg:w-52"
+                  )}
                 />
-                {/* Voice Visualizer */}
-                <VoiceVisualizer />
-              </>
-            ) : (
-              <div className="flex h-full items-center justify-center">
-                <l-quantum
-                  size="45"
-                  speed="1.75"
-                  color="white"
-                ></l-quantum>
+              )}
+              <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 justify-center gap-4">
+                <Button
+                  size="icon"
+                  variant="secondary"
+                  onClick={toggleAudio}
+                  className="bg-card/80 border border-border hover:bg-card"
+                >
+                  {!isMicEnabled ? (
+                    <MicOffIcon className="size-5" />
+                  ) : (
+                    <MicIcon className="size-5" />
+                  )}
+                </Button>
+                <Button
+                  size="icon"
+                  variant="secondary"
+                  onClick={toggleVideo}
+                  className="bg-card/80 border border-border hover:bg-card"
+                >
+                  {!isCameraEnabled ? (
+                    <VideoOffIcon className="size-5" />
+                  ) : (
+                    <VideoIcon className="size-5" />
+                  )}
+                </Button>
+                <Button
+                  size="icon"
+                  variant="destructive"
+                  onClick={leaveConversation}
+                  className="bg-destructive/80 hover:bg-destructive"
+                >
+                  <PhoneIcon className="size-5 rotate-[135deg]" />
+                </Button>
               </div>
-            )}
-            {localSessionId && (
-              <Video
-                id={localSessionId}
-                tileClassName="!object-cover"
-                className={cn(
-                  "absolute bottom-20 left-4 aspect-video h-40 w-24 overflow-hidden rounded-lg border-2 border-primary sm:bottom-12 lg:h-auto lg:w-52"
-                )}
-              />
-            )}
-            <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 justify-center gap-4">
-              <Button
-                size="icon"
-                variant="secondary"
-                onClick={toggleAudio}
-                className="bg-card/80 border border-border hover:bg-card"
-              >
-                {!isMicEnabled ? (
-                  <MicOffIcon className="size-5" />
-                ) : (
-                  <MicIcon className="size-5" />
-                )}
-              </Button>
-              <Button
-                size="icon"
-                variant="secondary"
-                onClick={toggleVideo}
-                className="bg-card/80 border border-border hover:bg-card"
-              >
-                {!isCameraEnabled ? (
-                  <VideoOffIcon className="size-5" />
-                ) : (
-                  <VideoIcon className="size-5" />
-                )}
-              </Button>
-              <Button
-                size="icon"
-                variant="destructive"
-                onClick={leaveConversation}
-                className="bg-destructive/80 hover:bg-destructive"
-              >
-                <PhoneIcon className="size-5 rotate-[135deg]" />
-              </Button>
+              <DailyAudio />
             </div>
-            <DailyAudio />
-          </div>
-        </DialogWrapper>
-      </div>
+          </DialogWrapper>
+        </div>
 
-      {/* Chat Interface */}
-      <div className="w-80 flex-shrink-0">
-        <ChatInterface
-          isMinimized={isChatMinimized}
-          onToggleMinimize={handleToggleChatMinimize}
-        />
+        {/* Chat Interface */}
+        <div className="w-96 h-full">
+          <ChatInterface
+            isMinimized={isChatMinimized}
+            onToggleMinimize={handleToggleChatMinimize}
+          />
+        </div>
       </div>
     </div>
   );
