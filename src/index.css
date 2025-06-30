@@ -155,3 +155,25 @@ input::placeholder {
          border border-border hover:border-primary/20
          transition-all duration-200 ease-in-out focus-ring;
 }
+
+/* Header Logo Styling */
+.header-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  transition: all 0.3s ease-in-out;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+}
+
+.header-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.15));
+}
+
+.dark .header-logo {
+  filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.1));
+}
+
+.dark .header-logo:hover {
+  filter: drop-shadow(0 6px 16px rgba(255, 255, 255, 0.15));
+}

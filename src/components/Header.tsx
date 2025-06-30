@@ -13,13 +13,11 @@ export const Header = memo(() => {
     <header className="glass-effect border-b border-border/30 p-4">
       <div className="flex w-full items-center justify-between">
         <div className="flex flex-col items-center gap-2">
-          <div className="p-2 bg-primary/10 rounded-xl">
-            <img 
-              src="/images/7.png" 
-              alt="Murphy's Kitchen Logo" 
-              className="size-12 object-contain"
-            />
-          </div>
+          <img 
+            src="/images/7.png" 
+            alt="Murphy's Kitchen Logo" 
+            className="header-logo"
+          />
           <p className="text-[10px] text-muted-foreground italic font-medium">
             Anything can be cooked will be cooked
           </p>
