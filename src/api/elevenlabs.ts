@@ -6,7 +6,9 @@ export const transcribeAudio = async (audioBlob: Blob): Promise<string> => {
     }
 
     const formData = new FormData();
-    formData.append('audio', audioBlob, 'audio.wav');
+    // Use appropriate filename based on blob type
+    const filename = audioBlob.type.includes('webm') ? 'audio.webm' : 'audio.wav';
+    formData.append('audio', audioBlob, filename);
     formData.append('model_id', 'eleven_english_sts_v2.5');
 
     const response = await fetch('https://api.elevenlabs.io/v1/speech-to-text', {

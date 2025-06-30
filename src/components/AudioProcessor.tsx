@@ -56,12 +56,8 @@ export const AudioProcessor: React.FC<AudioProcessorProps> = ({
           const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
           audioChunksRef.current = [];
           
-          // Convert to WAV format for ElevenLabs
-          const arrayBuffer = await audioBlob.arrayBuffer();
-          const wavBlob = new Blob([arrayBuffer], { type: 'audio/wav' });
-          
-          // Transcribe audio
-          const transcription = await transcribeAudio(wavBlob);
+          // Transcribe audio directly (ElevenLabs supports WebM)
+          const transcription = await transcribeAudio(audioBlob);
           if (transcription && transcription.trim()) {
             onTranscription?.(transcription);
           }
