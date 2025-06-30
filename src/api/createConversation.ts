@@ -20,7 +20,13 @@ export const createConversation = async (
   }
   contextString += settings.context || "";
 
-  let greeting = `Hello ${settings.name}, I am Murphy, your kitchen assistant. What dish should I help you with?`
+  // Fix greeting to handle empty/undefined name properly
+  let greeting;
+  if (settings.name && settings.name.trim()) {
+    greeting = `Hello ${settings.name}, I am Murphy, your kitchen assistant. What dish should I help you with?`;
+  } else {
+    greeting = `Hello! I am Murphy, your kitchen assistant. What dish should I help you with?`;
+  }
   
   const payload = {
     persona_id: settings.persona || "pcd2c84e5c66",
