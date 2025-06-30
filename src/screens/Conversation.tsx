@@ -106,98 +106,103 @@ export const Conversation: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row w-full h-full items-center justify-center gap-4 lg:gap-6 p-4">
-      {/* Video Container */}
-      <div className="w-full lg:flex-1 h-[50vh] sm:h-[60vh] lg:h-[600px]">
-        <DialogWrapper>
-          <div className="absolute inset-0 size-full">
-            {remoteParticipantIds?.length > 0 ? (
-              <>
-                <Video
-                  id={remoteParticipantIds[0]}
-                  className="size-full"
-                  tileClassName="!object-cover"
-                />
-                {/* Voice Visualizer */}
-                <VoiceVisualizer />
-              </>
-            ) : (
-              <div className="flex h-full items-center justify-center">
-                <l-quantum
-                  size="45"
-                  speed="1.75"
-                  color="white"
-                ></l-quantum>
+    <div className="flex w-full h-full items-center justify-center px-4">
+      {/* Centered Container */}
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-3 lg:gap-4 h-[50vh] sm:h-[60vh] lg:h-[600px] max-w-7xl w-full">
+        {/* Video Container */}
+        <div className="w-full lg:w-auto lg:flex-shrink-0 h-full lg:h-[600px]">
+          <div className="w-full lg:w-[800px] h-full">
+            <DialogWrapper>
+              <div className="absolute inset-0 size-full">
+                {remoteParticipantIds?.length > 0 ? (
+                  <>
+                    <Video
+                      id={remoteParticipantIds[0]}
+                      className="size-full"
+                      tileClassName="!object-cover"
+                    />
+                    {/* Voice Visualizer */}
+                    <VoiceVisualizer />
+                  </>
+                ) : (
+                  <div className="flex h-full items-center justify-center">
+                    <l-quantum
+                      size="45"
+                      speed="1.75"
+                      color="white"
+                    ></l-quantum>
+                  </div>
+                )}
+                {localSessionId && (
+                  <Video
+                    id={localSessionId}
+                    tileClassName="!object-cover"
+                    className={cn(
+                      "absolute bottom-16 sm:bottom-20 lg:bottom-20 left-2 sm:left-4 aspect-video h-20 w-16 sm:h-32 sm:w-20 lg:h-40 lg:w-24 overflow-hidden rounded-lg border-2 border-primary"
+                    )}
+                  />
+                )}
+                
+                {/* Mobile Chat Toggle Button */}
+                <div className="absolute top-4 right-4 lg:hidden">
+                  <Button
+                    onClick={toggleChat}
+                    size="icon"
+                    variant="secondary"
+                    className="bg-card/80 border border-border hover:bg-card"
+                  >
+                    {isChatVisible ? <X className="size-5" /> : <MessageSquare className="size-5" />}
+                  </Button>
+                </div>
+
+                {/* Control Buttons */}
+                <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-1/2 z-10 flex -translate-x-1/2 justify-center gap-2 sm:gap-4">
+                  <Button
+                    size="icon"
+                    variant="secondary"
+                    onClick={toggleAudio}
+                    className="bg-card/80 border border-border hover:bg-card w-10 h-10 sm:w-12 sm:h-12"
+                  >
+                    {!isMicEnabled ? (
+                      <MicOffIcon className="size-4 sm:size-5" />
+                    ) : (
+                      <MicIcon className="size-4 sm:size-5" />
+                    )}
+                  </Button>
+                  <Button
+                    size="icon"
+                    variant="secondary"
+                    onClick={toggleVideo}
+                    className="bg-card/80 border border-border hover:bg-card w-10 h-10 sm:w-12 sm:h-12"
+                  >
+                    {!isCameraEnabled ? (
+                      <VideoOffIcon className="size-4 sm:size-5" />
+                    ) : (
+                      <VideoIcon className="size-4 sm:size-5" />
+                    )}
+                  </Button>
+                  <Button
+                    size="icon"
+                    variant="destructive"
+                    onClick={leaveConversation}
+                    className="bg-destructive/80 hover:bg-destructive w-10 h-10 sm:w-12 sm:h-12"
+                  >
+                    <PhoneIcon className="size-4 sm:size-5 rotate-[135deg]" />
+                  </Button>
+                </div>
+                <DailyAudio />
               </div>
-            )}
-            {localSessionId && (
-              <Video
-                id={localSessionId}
-                tileClassName="!object-cover"
-                className={cn(
-                  "absolute bottom-16 sm:bottom-20 lg:bottom-20 left-2 sm:left-4 aspect-video h-20 w-16 sm:h-32 sm:w-20 lg:h-40 lg:w-24 overflow-hidden rounded-lg border-2 border-primary"
-                )}
-              />
-            )}
-            
-            {/* Mobile Chat Toggle Button */}
-            <div className="absolute top-4 right-4 lg:hidden">
-              <Button
-                onClick={toggleChat}
-                size="icon"
-                variant="secondary"
-                className="bg-card/80 border border-border hover:bg-card"
-              >
-                {isChatVisible ? <X className="size-5" /> : <MessageSquare className="size-5" />}
-              </Button>
-            </div>
-
-            {/* Control Buttons */}
-            <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-1/2 z-10 flex -translate-x-1/2 justify-center gap-2 sm:gap-4">
-              <Button
-                size="icon"
-                variant="secondary"
-                onClick={toggleAudio}
-                className="bg-card/80 border border-border hover:bg-card w-10 h-10 sm:w-12 sm:h-12"
-              >
-                {!isMicEnabled ? (
-                  <MicOffIcon className="size-4 sm:size-5" />
-                ) : (
-                  <MicIcon className="size-4 sm:size-5" />
-                )}
-              </Button>
-              <Button
-                size="icon"
-                variant="secondary"
-                onClick={toggleVideo}
-                className="bg-card/80 border border-border hover:bg-card w-10 h-10 sm:w-12 sm:h-12"
-              >
-                {!isCameraEnabled ? (
-                  <VideoOffIcon className="size-4 sm:size-5" />
-                ) : (
-                  <VideoIcon className="size-4 sm:size-5" />
-                )}
-              </Button>
-              <Button
-                size="icon"
-                variant="destructive"
-                onClick={leaveConversation}
-                className="bg-destructive/80 hover:bg-destructive w-10 h-10 sm:w-12 sm:h-12"
-              >
-                <PhoneIcon className="size-4 sm:size-5 rotate-[135deg]" />
-              </Button>
-            </div>
-            <DailyAudio />
+            </DialogWrapper>
           </div>
-        </DialogWrapper>
-      </div>
+        </div>
 
-      {/* Chat Interface - Desktop */}
-      <div className="hidden lg:block w-96 h-[600px]">
-        <ChatInterface
-          isMinimized={isChatMinimized}
-          onToggleMinimize={handleToggleChatMinimize}
-        />
+        {/* Chat Interface - Desktop */}
+        <div className="hidden lg:block w-80 xl:w-96 h-[600px] flex-shrink-0">
+          <ChatInterface
+            isMinimized={isChatMinimized}
+            onToggleMinimize={handleToggleChatMinimize}
+          />
+        </div>
       </div>
 
       {/* Chat Interface - Mobile Overlay */}
