@@ -48,7 +48,7 @@ export const Login: React.FC = () => {
                 <img 
                   src="/images/7.png" 
                   alt="Murphy's Kitchen Logo" 
-                  className="size-32 object-contain"
+                  className="size-64 object-contain"
                 />
                 <p className="text-sm text-muted-foreground italic font-medium">
                   Anything can be cooked will be cooked

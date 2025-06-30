@@ -89,6 +89,13 @@ export default {
         18: "4.5rem",
         30: "7.5rem",
         52: "13rem",
+        64: "16rem", // 256px
+      },
+      width: {
+        64: "16rem", // 256px
+      },
+      height: {
+        64: "16rem", // 256px
       },
       keyframes: {
         'fade-in': {

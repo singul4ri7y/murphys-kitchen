@@ -97,7 +97,7 @@ export const Intro: React.FC = () => {
                 <img 
                   src="/images/7.png" 
                   alt="Murphy's Kitchen Logo" 
-                  className="size-32 object-contain"
+                  className="size-64 object-contain"
                 />
               </div>
               <p className="text-xs text-muted-foreground italic font-medium">
@@ -144,7 +144,7 @@ export const Intro: React.FC = () => {
                 <img 
                   src="/images/7.png" 
                   alt="Murphy's Kitchen Logo" 
-                  className="size-32 object-contain"
+                  className="size-64 object-contain"
                 />
               </div>
               <p className="text-xs text-muted-foreground italic font-medium">
