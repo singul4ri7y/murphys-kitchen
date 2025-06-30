@@ -7,7 +7,6 @@ import { apiTokenAtom } from "@/store/tokens";
 import { createConversation } from "@/api";
 import { useDaily, useDevices } from "@daily-co/daily-react";
 import { quantum } from 'ldrs';
-import { Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import gloriaVideo from "@/assets/video/gloria.mp4";
 
@@ -66,6 +65,13 @@ export const Intro: React.FC = () => {
       setIsCreatingConversation(false);
     }
   };
+
+  // Auto-start conversation when component is ready
+  useEffect(() => {
+    if (token && !isCreatingConversation && !error) {
+      createConversationAndStart();
+    }
+  }, [token]);
 
   // If no token is available, show setup message
   if (!token) {
@@ -146,7 +152,7 @@ export const Intro: React.FC = () => {
     );
   }
 
-  // Show loading state or ready state
+  // Show loading state - auto-starting conversation
   return (
     <AnimatedWrapper>
       <div className="flex size-full flex-col items-center justify-center p-8">
@@ -172,38 +178,16 @@ export const Intro: React.FC = () => {
             </p>
           </div>
 
-          {isCreatingConversation ? (
-            <div className="space-y-4">
-              <l-quantum
-                size="60"
-                speed="1.75"
-                color="white"
-              ></l-quantum>
-              <p className="text-lg text-white">
-                Starting your AI cooking session...
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-6">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-semibold text-white">
-                  Ready to Cook with AI?
-                </h2>
-                <p className="text-lg text-white/80 max-w-md mx-auto">
-                  Have a face-to-face conversation with an AI chef ready to help you create culinary masterpieces.
-                </p>
-              </div>
-              
-              <Button
-                onClick={createConversationAndStart}
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-lg px-8 py-6"
-              >
-                <Play className="size-6 mr-2" />
-                Start Cooking Session
-              </Button>
-            </div>
-          )}
+          <div className="space-y-4">
+            <l-quantum
+              size="60"
+              speed="1.75"
+              color="white"
+            ></l-quantum>
+            <p className="text-lg text-white">
+              Starting your AI cooking session...
+            </p>
+          </div>
         </div>
       </div>
     </AnimatedWrapper>
