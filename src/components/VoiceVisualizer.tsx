@@ -1,9 +1,12 @@
 import React, { useState, useCallback } from 'react';
+import { useAtom } from 'jotai';
 import { AudioProcessor } from './AudioProcessor';
+import { addChatMessageAtom } from '@/store/chat';
 
 export const VoiceVisualizer: React.FC = () => {
   const [volume, setVolume] = useState(0);
   const [isAISpeaking, setIsAISpeaking] = useState(false);
+  const [, addMessage] = useAtom(addChatMessageAtom);
 
   const handleVolumeChange = useCallback((vol: number) => {
     setVolume(vol);
@@ -13,14 +16,22 @@ export const VoiceVisualizer: React.FC = () => {
   const handleAudioData = useCallback((audioData: Float32Array) => {
     // You can use this for more complex audio analysis
     // e.g., speech recognition, sentiment analysis, etc.
-    console.log('Audio frequency data:', audioData);
   }, []);
+
+  const handleTranscription = useCallback((text: string) => {
+    // Add AI's spoken words to chat
+    addMessage({
+      role: 'assistant',
+      content: text,
+    });
+  }, [addMessage]);
 
   return (
     <>
       <AudioProcessor 
         onVolumeChange={handleVolumeChange}
         onAudioData={handleAudioData}
+        onTranscription={handleTranscription}
       />
       
       {/* Visual indicator */}
