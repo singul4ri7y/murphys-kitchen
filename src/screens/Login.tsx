@@ -46,9 +46,6 @@ export const Login: React.FC = () => {
                   className="size-12 object-contain"
                 />
                 <div>
-                  <h1 className="text-3xl font-bold bg-text-primary bg-clip-text text-transparent">
-                    Murphy's Kitchen
-                  </h1>
                   <p className="text-sm text-muted-foreground italic">
                     Anything can be cooked will be cooked
                   </p>

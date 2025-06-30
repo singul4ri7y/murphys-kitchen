@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { Button } from "./ui/button";
-import { ChefHat, LogOut, User } from "lucide-react";
+import { LogOut, User } from "lucide-react";
 import { useAtom } from "jotai";
 import { authAtom, logoutAtom } from "@/store/auth";
 import { ThemeToggle } from "./ThemeToggle";
@@ -12,11 +12,12 @@ export const Header = memo(() => {
   return (
     <header className="flex w-full items-center justify-between p-4 bg-card/50 backdrop-blur-sm border-b border-border/50">
       <div className="flex items-center gap-3">
-        <ChefHat className="size-8 text-primary" />
+        <img 
+          src="/images/7.png" 
+          alt="Murphy's Kitchen Logo" 
+          className="size-8 object-contain"
+        />
         <div className="flex flex-col">
-          <h1 className="text-xl font-bold bg-text-primary bg-clip-text text-transparent">
-            Murphy's Kitchen
-          </h1>
           <p className="text-xs text-muted-foreground italic">
             Anything can be cooked will be cooked
           </p>

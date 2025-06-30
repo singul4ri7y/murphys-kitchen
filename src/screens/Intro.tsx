@@ -7,7 +7,7 @@ import { apiTokenAtom } from "@/store/tokens";
 import { createConversation } from "@/api";
 import { useDaily, useDevices } from "@daily-co/daily-react";
 import { quantum } from 'ldrs';
-import { ChefHat, Play } from "lucide-react";
+import { Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import gloriaVideo from "@/assets/video/gloria.mp4";
 
@@ -74,11 +74,12 @@ export const Intro: React.FC = () => {
         <div className="flex size-full flex-col items-center justify-center p-8">
           <div className="text-center space-y-6">
             <div className="flex items-center justify-center gap-4 mb-6">
-              <ChefHat className="size-16 text-primary" />
+              <img 
+                src="/images/7.png" 
+                alt="Murphy's Kitchen Logo" 
+                className="size-16 object-contain"
+              />
               <div>
-                <h1 className="text-4xl font-bold bg-text-primary bg-clip-text text-transparent">
-                  Murphy's Kitchen
-                </h1>
                 <p className="text-lg text-muted-foreground italic">
                   Anything can be cooked will be cooked
                 </p>
@@ -115,11 +116,12 @@ export const Intro: React.FC = () => {
         <div className="flex size-full flex-col items-center justify-center p-8">
           <div className="text-center space-y-6">
             <div className="flex items-center justify-center gap-4 mb-6">
-              <ChefHat className="size-16 text-primary" />
+              <img 
+                src="/images/7.png" 
+                alt="Murphy's Kitchen Logo" 
+                className="size-16 object-contain"
+              />
               <div>
-                <h1 className="text-4xl font-bold bg-text-primary bg-clip-text text-transparent">
-                  Murphy's Kitchen
-                </h1>
                 <p className="text-lg text-muted-foreground italic">
                   Anything can be cooked will be cooked
                 </p>
@@ -164,11 +166,12 @@ export const Intro: React.FC = () => {
         
         <div className="relative z-10 text-center space-y-8">
           <div className="flex items-center justify-center gap-4 mb-6">
-            <ChefHat className="size-20 text-white" />
+            <img 
+              src="/images/7.png" 
+              alt="Murphy's Kitchen Logo" 
+              className="size-20 object-contain"
+            />
             <div>
-              <h1 className="text-5xl font-bold text-white mb-2">
-                Murphy's Kitchen
-              </h1>
               <p className="text-xl text-primary italic">
                 Anything can be cooked will be cooked
               </p>
