@@ -29,67 +29,75 @@ export const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-accent/10 flex items-center justify-center p-4">
-      <div className="absolute top-4 right-4">
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-accent/5 flex items-center justify-center p-6 relative overflow-hidden">
+      {/* Floating Elements */}
+      <div className="absolute top-20 left-20 w-32 h-32 bg-primary/5 rounded-full blur-xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-20 w-24 h-24 bg-accent/5 rounded-full blur-xl animate-pulse delay-1000"></div>
+      <div className="absolute top-1/2 right-10 w-16 h-16 bg-secondary/10 rounded-full blur-lg animate-pulse delay-500"></div>
+      
+      <div className="absolute top-6 right-6 z-10">
         <ThemeToggle />
       </div>
       
-      <AnimatedWrapper>
-        <div className="flex size-full flex-col items-center justify-center p-8">
-          <div className="w-full max-w-md space-y-8">
+      <div className="w-full max-w-md relative z-10">
+        <div className="glass-effect rounded-2xl p-8 shadow-2xl border border-border/50">
+          <div className="space-y-8">
             {/* Header */}
-            <div className="text-center">
-              <div className="flex flex-col items-center gap-3 mb-6">
+            <div className="text-center space-y-4">
+              <div className="flex flex-col items-center gap-4">
                 <img 
                   src="/images/7.png" 
                   alt="Murphy's Kitchen Logo" 
-                  className="size-20 object-contain"
+                  className="size-32 object-contain"
                 />
-                <p className="text-sm text-muted-foreground italic">
+                <p className="text-sm text-muted-foreground italic font-medium">
                   Anything can be cooked will be cooked
                 </p>
               </div>
-              <h2 className="text-2xl font-semibold text-foreground">Welcome Back</h2>
-              <p className="text-muted-foreground">Sign in to start cooking with AI</p>
+              <div className="space-y-2">
+                <h2 className="text-2xl font-bold text-foreground">Welcome Back</h2>
+                <p className="text-muted-foreground">Sign in to start cooking with AI</p>
+              </div>
             </div>
 
             {/* Login Form */}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 size-4 text-muted-foreground" />
+                  <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 size-4 text-muted-foreground" />
                   <Input
                     type="email"
                     placeholder="Email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="pl-10 h-12 bg-card border-border"
+                    className="pl-12 h-12 bg-background/50 border-border/50 focus:bg-background"
                     required
                   />
                 </div>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 size-4 text-muted-foreground" />
+                  <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 size-4 text-muted-foreground" />
                   <Input
                     type="password"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="pl-10 h-12 bg-card border-border"
+                    className="pl-12 h-12 bg-background/50 border-border/50 focus:bg-background"
                     required
                   />
                 </div>
               </div>
 
               {error && (
-                <div className="p-3 rounded-md bg-destructive/10 border border-destructive/20">
-                  <p className="text-sm text-destructive">{error}</p>
+                <div className="p-4 rounded-xl bg-destructive/10 border border-destructive/20">
+                  <p className="text-sm text-destructive font-medium">{error}</p>
                 </div>
               )}
 
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold shadow-button-shadow"
+                className="w-full h-12 text-base font-semibold"
+                size="lg"
               >
                 {isLoading ? (
                   <>
@@ -109,7 +117,7 @@ export const Login: React.FC = () => {
             </div>
           </div>
         </div>
-      </AnimatedWrapper>
+      </div>
     </div>
   );
 };

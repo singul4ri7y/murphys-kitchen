@@ -8,7 +8,6 @@ import { createConversation } from "@/api";
 import { useDaily, useDevices } from "@daily-co/daily-react";
 import { quantum } from 'ldrs';
 import { Button } from "@/components/ui/button";
-import gloriaVideo from "@/assets/video/gloria.mp4";
 
 quantum.register();
 
@@ -82,20 +81,31 @@ export const Intro: React.FC = () => {
   if (!token) {
     return (
       <AnimatedWrapper>
-        <div className="flex size-full flex-col items-center justify-center p-8">
-          <div className="text-center space-y-6">
+        <div className="flex size-full flex-col items-center justify-center p-8 relative overflow-hidden">
+          {/* Animated Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10"></div>
+          <div className="absolute inset-0 bg-gradient-to-tl from-secondary/5 via-transparent to-primary/5"></div>
+          
+          {/* Floating Elements */}
+          <div className="absolute top-20 left-20 w-32 h-32 bg-primary/5 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-24 h-24 bg-accent/5 rounded-full blur-xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-10 w-16 h-16 bg-secondary/10 rounded-full blur-lg animate-pulse delay-500"></div>
+          
+          <div className="relative z-10 text-center space-y-6">
             <div className="flex flex-col items-center gap-4 mb-6">
-              <img 
-                src="/images/7.png" 
-                alt="Murphy's Kitchen Logo" 
-                className="size-32 object-contain"
-              />
-              <p className="text-xs text-muted-foreground italic">
+              <div className="p-6 bg-primary/10 rounded-3xl shadow-lg backdrop-blur-sm border border-primary/20">
+                <img 
+                  src="/images/7.png" 
+                  alt="Murphy's Kitchen Logo" 
+                  className="size-32 object-contain"
+                />
+              </div>
+              <p className="text-xs text-muted-foreground italic font-medium">
                 Anything can be cooked will be cooked
               </p>
             </div>
 
-            <div className="bg-card/50 p-6 rounded-lg border border-border">
+            <div className="glass-effect p-6 rounded-2xl border border-border/50 shadow-xl">
               <h2 className="text-xl font-semibold text-foreground mb-3">Setup Required</h2>
               <p className="text-muted-foreground mb-4">
                 Please add your Tavus API key to the .env file to get started.
@@ -122,20 +132,27 @@ export const Intro: React.FC = () => {
   if (error) {
     return (
       <AnimatedWrapper>
-        <div className="flex size-full flex-col items-center justify-center p-8">
-          <div className="text-center space-y-6">
+        <div className="flex size-full flex-col items-center justify-center p-8 relative overflow-hidden">
+          {/* Animated Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-destructive/5 via-transparent to-primary/5"></div>
+          <div className="absolute top-20 left-20 w-32 h-32 bg-destructive/5 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-24 h-24 bg-primary/5 rounded-full blur-xl animate-pulse delay-1000"></div>
+          
+          <div className="relative z-10 text-center space-y-6">
             <div className="flex flex-col items-center gap-4 mb-6">
-              <img 
-                src="/images/7.png" 
-                alt="Murphy's Kitchen Logo" 
-                className="size-32 object-contain"
-              />
-              <p className="text-xs text-muted-foreground italic">
+              <div className="p-6 bg-destructive/10 rounded-3xl shadow-lg backdrop-blur-sm border border-destructive/20">
+                <img 
+                  src="/images/7.png" 
+                  alt="Murphy's Kitchen Logo" 
+                  className="size-32 object-contain"
+                />
+              </div>
+              <p className="text-xs text-muted-foreground italic font-medium">
                 Anything can be cooked will be cooked
               </p>
             </div>
 
-            <div className="bg-destructive/10 p-6 rounded-lg border border-destructive/20">
+            <div className="glass-effect p-6 rounded-2xl border border-destructive/30 shadow-xl">
               <h2 className="text-xl font-semibold text-destructive mb-3">Connection Error</h2>
               <p className="text-destructive/80 mb-4">
                 Failed to start the conversation. Please check your API key and try again.
@@ -160,35 +177,46 @@ export const Intro: React.FC = () => {
   // Show loading state without text - auto-starting conversation
   return (
     <AnimatedWrapper>
-      <div className="flex size-full flex-col items-center justify-center p-8">
-        <video
-          src={gloriaVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover rounded-2.5xl"
-        />
-        <div className="absolute inset-0 bg-primary-overlay backdrop-blur-sm rounded-2.5xl" />
+      <div className="flex size-full flex-col items-center justify-center p-8 relative overflow-hidden">
+        {/* Modern Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-background to-accent/15"></div>
+        <div className="absolute inset-0 bg-gradient-to-tl from-secondary/10 via-transparent to-primary/10"></div>
+        
+        {/* Animated Cooking Elements */}
+        <div className="absolute top-20 left-20 w-40 h-40 bg-primary/8 rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-32 h-32 bg-accent/8 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-10 w-20 h-20 bg-secondary/12 rounded-full blur-xl animate-pulse delay-500"></div>
+        <div className="absolute bottom-1/3 left-1/3 w-16 h-16 bg-primary/6 rounded-full blur-lg animate-pulse delay-300"></div>
+        <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-accent/6 rounded-full blur-xl animate-pulse delay-700"></div>
         
         <div className="relative z-10 text-center space-y-8">
-          <div className="flex flex-col items-center gap-4 mb-6">
-            <img 
-              src="/images/7.png" 
-              alt="Murphy's Kitchen Logo" 
-              className="size-40 object-contain"
-            />
-            <p className="text-sm text-primary/80 italic font-medium">
+          <div className="flex flex-col items-center gap-6 mb-8">
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-xl animate-pulse"></div>
+              <div className="relative p-8 glass-effect rounded-3xl shadow-2xl border border-primary/30">
+                <img 
+                  src="/images/7.png" 
+                  alt="Murphy's Kitchen Logo" 
+                  className="size-40 object-contain"
+                />
+              </div>
+            </div>
+            <p className="text-base text-primary/80 italic font-medium">
               Anything can be cooked will be cooked
             </p>
           </div>
 
-          <div className="space-y-4">
-            <l-quantum
-              size="60"
-              speed="1.75"
-              color="white"
-            ></l-quantum>
+          <div className="space-y-6">
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/10 rounded-2xl blur-lg"></div>
+              <div className="relative p-4 glass-effect rounded-2xl">
+                <l-quantum
+                  size="60"
+                  speed="1.75"
+                  color="hsl(var(--primary))"
+                ></l-quantum>
+              </div>
+            </div>
           </div>
         </div>
       </div>
